@@ -1,15 +1,24 @@
-# Mycelium Deployment Packages
+# Mycelium Deploy
 
-Staged and ready for SCP to any Coven device.
+Deployment scripts and bootstrap helpers for the Mycelium mesh.
 
-## Packages
+## Contents
+
+- `mycelium-phone.sh` — Android Termux bootstrap for LG G4 / Pixel-class devices
+- `mycelium-slow-digest/` — symlinked to the digest engine repo
+- `shepherd-dell-latitude/` — Dell Latitude full node package (linux/amd64)
+- `rhubarb-rpi5/` — Raspberry Pi 5 full node package (linux/arm64)
+- `crow-wren-rpi-zero2w/` — RPi Zero 2W compute-only package (linux/armhf)
+- `owl-rpi-model-b/` — RPi Model B compute-only package (linux/armhf)
+
+## Deployment Packages
 
 | Package | Device | Arch | Binary Size | Role |
 |---------|--------|------|-------------|------|
-| shepherd-dell-latitude/ | Shepherd (Dell Latitude) | linux/amd64 | 10.3 MB | Full node (API + compute) |
-| rhubarb-rpi5/ | Rhubarb (RPi5) | linux/arm64 | 9.6 MB | Full node (API + compute) |
-| crow-wren-rpi-zero2w/ | Crow/Wren (RPi Zero 2W) | linux/armhf | 9.8 MB | Compute only (512MB RAM) |
-| owl-rpi-model-b/ | Owl (RPi Model B) | linux/armhf | 9.8 MB | Compute only (512MB RAM) |
+| `shepherd-dell-latitude/` | Shepherd (Dell Latitude) | linux/amd64 | 10.3 MB | Full node (API + compute) |
+| `rhubarb-rpi5/` | Rhubarb (RPi5) | linux/arm64 | 9.6 MB | Full node (API + compute) |
+| `crow-wren-rpi-zero2w/` | Crow/Wren (RPi Zero 2W) | linux/armhf | 9.8 MB | Compute only (512MB RAM) |
+| `owl-rpi-model-b/` | Owl (RPi Model B) | linux/armhf | 9.8 MB | Compute only (512MB RAM) |
 
 ## Deploy To A Device
 
@@ -71,19 +80,21 @@ nodes:
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| MYCELIUM_PORT | 11435 | API gateway port |
-| MYCELIUM_HOST | 0.0.0.0 | API gateway host |
-| MYCELIUM_RPC_PORT | 50052 | RPC compute port |
-| MYCELIUM_RPC_HOST | 0.0.0.0 | RPC compute host |
+| `MYCELIUM_PORT` | 11435 | API gateway port |
+| `MYCELIUM_HOST` | 0.0.0.0 | API gateway host |
+| `MYCELIUM_RPC_PORT` | 50052 | RPC compute port |
+| `MYCELIUM_RPC_HOST` | 0.0.0.0 | RPC compute host |
 
-## GitHub
+## Related repos
 
-Source code: https://github.com/AR-Davis/prima_distributed_local/tree/main/mycelium-api
+- `AR-Davis/mycelium-api` — Ollama-compatible distributed inference gateway
+- `AR-Davis/mycelium-slow-digest` — deliberation engine + dashboard
+- `AR-Davis/prima.cpp` — RPC server for edge nodes
 
 ## Build From Source
 
 ```bash
 cd ~/Projects/mycelium-api
 make build-all    # cross-compile all architectures
-make deploy       # create deployment packages here
+make deploy       # create deployment packages
 ```
